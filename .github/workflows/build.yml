@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out my other private repo
+        uses: actions/checkout@v4.1.2
+        with:
+          repository: ansperson/learning
+          ref: main
+          token: ${{ github.token }}
