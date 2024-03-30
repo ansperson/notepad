@@ -42,7 +42,7 @@ jobs:
 
       - name: Test learning
         run: |
-          ls -l ./learning
+          ls -lR ./learning
 
       - name: Run Pre-Build
         run: |
