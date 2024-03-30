@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const git = simpleGit();
 const rimraf = require('rimraf');
+const { exec } = require('child_process');
+
 
 function cloneRepo(user, repo, destination) {
     return new Promise(async (resolve, reject) => {
@@ -117,11 +119,28 @@ function appendToReadmeFiles(folder) {
 }
 
 
+function moveFolders(folders, destination) {
+    folders.forEach(folder => {
+        exec(`mv ${folder} ${destination}`, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error moving folder: ${error}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`Error moving folder: ${stderr}`);
+                return;
+            }
+            console.log(`Moved ${folder} to ${destination}`);
+        });
+    });
+}
+
 cloneRepo('ansperson', 'learning', './learning')
     .then(() => {
         prependMetadataToMarkdownFiles('./learning');
         adjustImageTagsInMarkdownFiles('./learning');
         replaceStringsInMarkdownFiles('./learning');
         appendToReadmeFiles('./learning');
+        moveFolders(['./learning/azure'], './docs/');
     })
     .catch(err => console.error(err));

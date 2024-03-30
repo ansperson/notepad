@@ -2,15 +2,25 @@ on:
   push:
     branches:
       - main
-      - 'releases/**'
+      - 'feat/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out my other private repo
-        uses: actions/checkout@v4.1.2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          repository: ansperson/learning
-          ref: main
-          token: ${{ github.token }}
+          node-version: 14
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run pre-build
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: build
