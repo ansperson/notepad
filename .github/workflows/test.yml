@@ -5,6 +5,7 @@ on:
 
 jobs:
   build:
+    name: Build Page Artifact
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
