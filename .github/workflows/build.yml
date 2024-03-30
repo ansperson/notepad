@@ -5,6 +5,16 @@ on:
       - main
       - 'feat/**'
 
+
+
+permissions:
+  # to deploy to Pages
+  pages: write
+  # to verify the deployment originates from an appropriate source
+  id-token: write
+
+
+
 jobs:
   build:
     name: Build Page Artifact
@@ -28,9 +38,9 @@ jobs:
         run: |
           npm run pre-build
 
-      - name: Run Build
-        run: |
-          npm run build
+      # - name: Run Build
+      #   run: |
+      #     npm run build
 
       - name: test Build
         run: |
@@ -38,9 +48,9 @@ jobs:
           cat ./docs/az-104/README.md
           cat ./docs/az-104/Implement\ and\ manage\ storage/README.md
 
-      - name: test Build
-        run: |
-          ls -lR build
+      # - name: test Build
+      #   run: |
+      #     ls -lR build
 
   #     - name: Upload Build Artifact
   #       uses: actions/upload-pages-artifact@v3
