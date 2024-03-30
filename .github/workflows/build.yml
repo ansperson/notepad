@@ -13,6 +13,9 @@ jobs:
         with:
           node-version: 14
 
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Install and Build
         run: |
           npm install
