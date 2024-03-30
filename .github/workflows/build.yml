@@ -36,6 +36,7 @@ jobs:
         run: |
           ls -lR ./docs
           cat ./docs/az-104/README.md
+          cat ./docs/az-104/Implement and manage storage/README.md
 
       - name: test Build
         run: |
