@@ -121,7 +121,7 @@ function appendToReadmeFiles(folder) {
 
 function moveFolders(folders, destination) {
     folders.forEach(folder => {
-        exec(`mv ${folder} ${destination}`, (error, stdout, stderr) => {
+        exec(`cp ${folder} ${destination}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error moving folder: ${error}`);
                 return;
