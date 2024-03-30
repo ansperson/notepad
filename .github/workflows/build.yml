@@ -32,6 +32,15 @@ jobs:
         run: |
           npm run build
 
+      - name: test Build
+        run: |
+          ls -lR ./docs
+          cat ./docs/README.md
+
+      - name: test Build
+        run: |
+          ls -lR build
+
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
