@@ -35,7 +35,7 @@ jobs:
       - name: test Build
         run: |
           ls -lR ./docs
-          cat ./docs/README.md
+          cat ./docs/az-104/README.md
 
       - name: test Build
         run: |
