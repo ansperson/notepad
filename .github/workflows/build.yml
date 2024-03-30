@@ -36,15 +36,15 @@ jobs:
         run: |
             npm run pre-build
 
-      - name: Test
-        run: |
-             ls -l
-
       - name: Test learning
         run: |
           ls -lR ./learning
 
-      - name: Run Pre-Build
+      - name: Test docs
+        run: |
+          ls -lR ./docs
+
+      - name: Run Build
         run: |
             npm run build
 
