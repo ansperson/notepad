@@ -5,7 +5,7 @@ const git = simpleGit();
 const rimraf = require('rimraf');
 const { exec } = require('child_process');
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const exec_util = util.promisify(require('child_process').exec);
 
 function cloneRepo(user, repo, destination) {
     return new Promise(async (resolve, reject) => {
@@ -123,7 +123,7 @@ async function copyFolders(folders, destination) {
     for (const folder of folders) {
         const folderName = folder.split('/').pop();
         try {
-            await exec(`cp -R ${folder} ${destination}/${folderName}`);
+            await exec_util(`cp -R ${folder} ${destination}/${folderName}`);
             console.log(`Moved ${folder} to ${destination}/${folderName}`);
         } catch (error) {
             console.error(`Error moving folder: ${error}`);
