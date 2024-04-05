@@ -28,6 +28,10 @@ jobs:
         run: |
           npm run pre-build
 
+      - name: Move Docs
+        run: |
+          mv ./learning/azure ./docs/
+
       - name: Run Build
         run: |
           npm run build

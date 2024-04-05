@@ -119,18 +119,18 @@ function appendToReadmeFiles(folder) {
     });
 }
 
-async function copyFolders(folders, destination) {
-    for (const folder of folders) {
-        const folderName = folder.split('/').pop();
-        try {
-            await exec_util(`cp -R ${folder} ${destination}/${folderName}`);
-            console.log(`Moved ${folder} to ${destination}/${folderName}`);
-        } catch (error) {
-            console.error(`Error moving folder: ${error}`);
-            throw error;
-        }
-    }
-}
+// async function copyFolders(folders, destination) {
+//     for (const folder of folders) {
+//         const folderName = folder.split('/').pop();
+//         try {
+//             await exec_util(`cp -R ${folder} ${destination}/${folderName}`);
+//             console.log(`Moved ${folder} to ${destination}/${folderName}`);
+//         } catch (error) {
+//             console.error(`Error moving folder: ${error}`);
+//             throw error;
+//         }
+//     }
+// }
 
 cloneRepo('ansperson', 'learning', './learning')
     .then(() => {
