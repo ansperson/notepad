@@ -4,7 +4,8 @@ const path = require('path');
 const git = simpleGit();
 const rimraf = require('rimraf');
 const { exec } = require('child_process');
-
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 function cloneRepo(user, repo, destination) {
     return new Promise(async (resolve, reject) => {
@@ -118,21 +119,17 @@ function appendToReadmeFiles(folder) {
     });
 }
 
-
-function moveFolders(folders, destination) {
-    folders.forEach(folder => {
-        exec(`cp -R ${folder} ${destination}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error moving folder: ${error}`);
-                return;
-            }
-            if (stderr) {
-                console.error(`Error moving folder: ${stderr}`);
-                return;
-            }
-            console.log(`Moved ${folder} to ${destination}`);
-        });
-    });
+async function copyFolders(folders, destination) {
+    for (const folder of folders) {
+        const folderName = folder.split('/').pop();
+        try {
+            await exec(`cp -R ${folder} ${destination}/${folderName}`);
+            console.log(`Moved ${folder} to ${destination}/${folderName}`);
+        } catch (error) {
+            console.error(`Error moving folder: ${error}`);
+            throw error;
+        }
+    }
 }
 
 cloneRepo('ansperson', 'learning', './learning')
@@ -141,6 +138,6 @@ cloneRepo('ansperson', 'learning', './learning')
         adjustImageTagsInMarkdownFiles('./learning');
         replaceStringsInMarkdownFiles('./learning');
         appendToReadmeFiles('./learning');
-        moveFolders(['./learning/azure'], './docs/');
+        copyFolders(['./learning/azure'], './docs/');
     })
     .catch(err => console.error(err));

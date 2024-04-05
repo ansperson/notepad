@@ -5,16 +5,6 @@ on:
       - main
       - 'feat/**'
 
-
-
-permissions:
-  # to deploy to Pages
-  pages: write
-  # to verify the deployment originates from an appropriate source
-  id-token: write
-
-
-
 jobs:
   build:
     name: Build Page Artifact
@@ -38,9 +28,9 @@ jobs:
         run: |
           npm run pre-build
 
-      # - name: Run Build
-      #   run: |
-      #     npm run build
+      - name: Run Build
+        run: |
+          npm run build
 
       - name: test Build
         run: |
@@ -48,33 +38,29 @@ jobs:
           cat ./docs/az-104/README.md
           cat ./docs/az-104/Implement\ and\ manage\ storage/README.md
 
-      # - name: test Build
-      #   run: |
-      #     ls -lR build
+      - name: Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
 
-  #     - name: Upload Build Artifact
-  #       uses: actions/upload-pages-artifact@v3
-  #       with:
-  #         path: build
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
 
-  # deploy:
-  #   name: Deploy to GitHub Pages
-  #   needs: build
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      # to deploy to Pages
+      pages: write
+      # to verify the deployment originates from an appropriate source
+      id-token: write
 
-  #   # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-  #   permissions:
-  #     # to deploy to Pages
-  #     pages: write
-  #     # to verify the deployment originates from an appropriate source
-  #     id-token: write
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-  #   # Deploy to the github-pages environment
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
