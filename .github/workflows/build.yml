@@ -30,7 +30,7 @@ jobs:
 
       - name: Move Docs
         run: |
-          mv ./learning/docs/azure ./docs/
+          mv ./learning/docs/ ./docs/
 
       - name: Run Build
         run: |
