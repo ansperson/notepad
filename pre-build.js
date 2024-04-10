@@ -7,7 +7,7 @@ const { exec } = require('child_process');
 const util = require('util');
 const exec_util = util.promisify(require('child_process').exec);
 
-function cloneRepo(user, repo, destination) {
+function cloneRepo(user, repo, destination, branch = 'main') {
     return new Promise(async (resolve, reject) => {
         // If the destination directory exists, delete it
         if (fs.existsSync(destination)) {
@@ -16,8 +16,8 @@ function cloneRepo(user, repo, destination) {
 
         const url = `https://github.com/${user}/${repo}.git`;
         try {
-            await git.clone(url, destination);
-            console.log('Repository cloned successfully!');
+            await git.clone(url, destination, { '--branch': branch });
+            console.log(`Repository cloned successfully from branch ${branch}!`);
             resolve();
         } catch (err) {
             console.error('Error cloning repository:', err);
@@ -119,18 +119,6 @@ function appendToReadmeFiles(folder) {
     });
 }
 
-// async function copyFolders(folders, destination) {
-//     for (const folder of folders) {
-//         const folderName = folder.split('/').pop();
-//         try {
-//             await exec_util(`cp -R ${folder} ${destination}/${folderName}`);
-//             console.log(`Moved ${folder} to ${destination}/${folderName}`);
-//         } catch (error) {
-//             console.error(`Error moving folder: ${error}`);
-//             throw error;
-//         }
-//     }
-// }
 
 cloneRepo('ansperson', 'learning', './learning')
     .then(() => {

@@ -47,8 +47,9 @@ html {
   font-family: "Mona Sans";
 }
 
+/* Kept for reference only, can be deleted. */
 h1,
-h2 {font-family: "Hubot Sans";}
+h2 {font-family: "Mona Sans";}
 h3 {font-family: "Mona Sans";}
 h4 {font-family: "Mona Sans";}
 h5 {font-family: "Mona Sans";}

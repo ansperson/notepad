@@ -30,17 +30,11 @@ jobs:
 
       - name: Move Docs
         run: |
-          mv ./learning/azure ./docs/
+          mv ./learning/docs/azure ./docs/
 
       - name: Run Build
         run: |
           npm run build
-
-      - name: test Build
-        run: |
-          ls -lR ./docs
-          cat ./docs/az-104/README.md
-          cat ./docs/az-104/Implement\ and\ manage\ storage/README.md
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,10 +1,15 @@
-# Website
+# Website (WiP)
 
-fonts
-https://github.com/github/hubot-sans/releases/tag/v1.0.1
-https://github.com/github/mona-sans/releases/tag/v1.0.1
+## Fonts
 
+[hubot](https://github.com/github/hubot-sans/releases/tag/v1.0.1)
+[mona](https://github.com/github/mona-sans/releases/tag/v1.0.1)
 
-# tests
+## Tests
 
-Verificar niveis de path dentro do docs,
+- Depth of learning folder
+- Script execution prereq to PR
+
+## To Fix
+
+- Multiple `extra` pages creating routing errors
