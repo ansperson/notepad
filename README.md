@@ -12,4 +12,4 @@
 
 ## To Fix
 
-- Multiple `extra` pages creating routing errors
+- Images

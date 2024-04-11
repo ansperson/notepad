@@ -3,9 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const git = simpleGit();
 const rimraf = require('rimraf');
-const { exec } = require('child_process');
-const util = require('util');
-const exec_util = util.promisify(require('child_process').exec);
+const repoPath = './learning';
+let slugDict = {};
 
 function cloneRepo(user, repo, destination, branch = 'main') {
     return new Promise(async (resolve, reject) => {
@@ -40,12 +39,23 @@ function prependMetadataToMarkdownFiles(folder) {
             } else if (path.extname(dirent.name) === '.md') {
                 let fileNameNoSpaces = path.basename(dirent.name, '.md').replace(/\s/g, '').replace(/[()]/g, '');
                 let fileName = path.basename(dirent.name, '.md');
+
                 // If the file is README.md, set the slug and title to be the name of the parent directory
                 if (fileName.toLowerCase() === 'readme') {
                     const dirName = path.basename(folder);
                     fileNameNoSpaces = dirName;
                     fileName = dirName;
                 }
+
+                // Check if the slug already exists in the slugDict
+                if (slugDict[fileNameNoSpaces]) {
+                    slugDict[fileNameNoSpaces]++;
+                    fileNameNoSpaces += `-${slugDict[fileNameNoSpaces]}`;
+                } else {
+                    slugDict[fileNameNoSpaces] = 1;
+                    fileNameNoSpaces += `-1`;
+                }
+
                 const data = `---\nslug: /${fileNameNoSpaces}\ntitle: ${fileName}\n---\n`;
                 console.log(`Prepending metadata to file: ${fileName}.md`);
                 fs.readFile(res, 'utf8', (err, fileContents) => {
@@ -63,7 +73,7 @@ function prependMetadataToMarkdownFiles(folder) {
             }
         });
     });
-  }
+}
 
 function adjustImageTagsInMarkdownFiles(folder) {
     fs.readdirSync(folder, { withFileTypes: true }).forEach((dirent) => {
@@ -103,11 +113,11 @@ function replaceStringsInMarkdownFiles(folder) {
     });
 }
 
-function appendToReadmeFiles(folder) {
+function appendIndexToReadmeFiles(folder) {
     fs.readdirSync(folder, { withFileTypes: true }).forEach((dirent) => {
         const res = path.resolve(folder, dirent.name);
         if (dirent.isDirectory()) {
-            appendToReadmeFiles(res);
+            appendIndexToReadmeFiles(res);
         } else if (dirent.name.toLowerCase() === 'readme.md') {
             const appendData = "\nimport DocCardList from '@theme/DocCardList';\n\n<DocCardList />\n";
             try {
@@ -119,13 +129,11 @@ function appendToReadmeFiles(folder) {
     });
 }
 
-
-cloneRepo('ansperson', 'learning', './learning')
+cloneRepo('ansperson', 'learning', repoPath)
     .then(() => {
-        prependMetadataToMarkdownFiles('./learning');
-        adjustImageTagsInMarkdownFiles('./learning');
-        replaceStringsInMarkdownFiles('./learning');
-        appendToReadmeFiles('./learning');
-        copyFolders(['./learning/azure'], './docs/');
+        prependMetadataToMarkdownFiles(repoPath);
+        adjustImageTagsInMarkdownFiles(repoPath);
+        replaceStringsInMarkdownFiles(repoPath);
+        appendIndexToReadmeFiles(repoPath);
     })
     .catch(err => console.error(err));
