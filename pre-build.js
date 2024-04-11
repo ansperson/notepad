@@ -39,7 +39,6 @@ function prependMetadataToMarkdownFiles(folder) {
             } else if (path.extname(dirent.name) === '.md') {
                 let fileNameNoSpaces = path.basename(dirent.name, '.md').replace(/\s/g, '').replace(/[()]/g, '');
                 let fileName = path.basename(dirent.name, '.md');
-
                 // If the file is README.md, set the slug and title to be the name of the parent directory
                 if (fileName.toLowerCase() === 'readme') {
                     const dirName = path.basename(folder);
@@ -53,7 +52,6 @@ function prependMetadataToMarkdownFiles(folder) {
                     fileNameNoSpaces += `-${slugDict[fileNameNoSpaces]}`;
                 } else {
                     slugDict[fileNameNoSpaces] = 1;
-                    fileNameNoSpaces += `-1`;
                 }
 
                 const data = `---\nslug: /${fileNameNoSpaces}\ntitle: ${fileName}\n---\n`;
