@@ -41,8 +41,6 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-
-          // Need to fix the /docs/ issue since there is not /docs on learning
           editUrl:
             'https://github.com/ansperson/learning/tree/main/',
         },
@@ -89,10 +87,10 @@ const config = {
             'aria-label': 'GitHub repository',
           },
           {
-            href: 'https://github.com/ansperson/notepad',
+            href: 'https://www.linkedin.com/in/ansperson/',
             position: 'right',
-            className: 'header-github-link',
-            'aria-label': 'GitHub repository',
+            className: 'header-linkedin-link',
+            'aria-label': 'Linkedin',
           },
         ],
       },
