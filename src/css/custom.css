@@ -13,6 +13,12 @@
   --ifm-color-primary-light: #5597d4;
   --ifm-color-primary-lighter: #609ed6;
   --ifm-color-primary-lightest: #80b1df;
+  --ifm-hover-overlay: rgba(1, 84, 250, 0.05);
+}
+
+.menu {
+  font-size: 0.9rem;
+  /*font-weight: var(--ifm-font-weight-normal);*/
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
