@@ -24,7 +24,7 @@
 @media (min-width: 1000px) {
   .hero {
     /* background-image: url('/Users/Alan_Pereira/Desktop/Repos/Person/blog/static/img/tt.svg'); */
-    background-image: url('/Users/Alan_Pereira/Desktop/Repos/Person/blog/static/img/hero.png');
+    background-image: url('/img/hero.png');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
