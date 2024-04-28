@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Notepad',
-  tagline: 'A Personal pad',
+  title: '',
+  //tagline: 'A Personal pad',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

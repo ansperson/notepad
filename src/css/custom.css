@@ -21,6 +21,36 @@
   /*font-weight: var(--ifm-font-weight-normal);*/
 }
 
+@media (min-width: 1000px) {
+  .hero {
+    /* background-image: url('/Users/Alan_Pereira/Desktop/Repos/Person/blog/static/img/tt.svg'); */
+    background-image: url('/Users/Alan_Pereira/Desktop/Repos/Person/blog/static/img/hero.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    height: 400px;
+    background-color: white;
+  }
+}
+.hero .container {
+  display: flex;
+  justify-content: center; /* Centers items horizontally in the container */
+  align-items: flex-end; /* Aligns items to the end of the container */
+}
+.hero .hero__title {
+  color: hsla(211, 90%, 10%, 0.71);
+  font-family: "Mona Sans";
+  font-size: 2.4rem;
+  padding-top: 27rem;
+  display: none;
+}
+
+
+
+.heroBanner_src-pages-index-module {
+  margin-bottom: 1.3rem;
+}
+
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --ifm-color-primary: #93b7f0;
