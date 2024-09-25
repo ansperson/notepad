@@ -1,0 +1,125 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #408ace;
+  --ifm-color-primary-dark: #327dc1;
+  --ifm-color-primary-darker: #2f76b7;
+  --ifm-color-primary-darkest: #276196;
+  --ifm-color-primary-light: #5597d4;
+  --ifm-color-primary-lighter: #609ed6;
+  --ifm-color-primary-lightest: #80b1df;
+  --ifm-hover-overlay: rgba(1, 84, 250, 0.05);
+}
+
+.menu {
+  font-size: 0.9rem;
+  /*font-weight: var(--ifm-font-weight-normal);*/
+}
+
+@media (min-width: 1000px) {
+  .hero {
+    /* background-image: url('/Users/Alan_Pereira/Desktop/Repos/Person/blog/static/img/tt.svg'); */
+    background-image: url('/img/hero.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    height: 400px;
+    background-color: white;
+  }
+}
+.hero .container {
+  display: flex;
+  justify-content: center; /* Centers items horizontally in the container */
+  align-items: flex-end; /* Aligns items to the end of the container */
+}
+.hero .hero__title {
+  color: hsla(211, 90%, 10%, 0.71);
+  font-family: "Mona Sans";
+  font-size: 2.4rem;
+  padding-top: 27rem;
+  display: none;
+}
+
+
+
+.heroBanner_src-pages-index-module {
+  margin-bottom: 1.3rem;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #93b7f0;
+  --ifm-color-primary-dark: #71a0eb;
+  --ifm-color-primary-darker: #6095e9;
+  --ifm-color-primary-darkest: #2d73e2;
+  --ifm-color-primary-light: #b5cef5;
+  --ifm-color-primary-lighter: #c6d9f7;
+  --ifm-color-primary-lightest: #f9fbfe;
+  --ifm-background-color: #1d2149;
+}
+
+@font-face {
+  font-family: "Hubot Sans";
+  src: url("/static/fonts/Hubot-Sans.woff2") format("woff2 supports variations"),
+    url("/static/fonts/Hubot-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/static/fonts/Mona-Sans.woff2") format("woff2 supports variations"),
+    url("/static/fonts/Mona-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+html {
+  font-family: "Mona Sans";
+}
+
+/* Kept for reference only, can be deleted. */
+h1,
+h2 {font-family: "Mona Sans";}
+h3 {font-family: "Mona Sans";}
+h4 {font-family: "Mona Sans";}
+h5 {font-family: "Mona Sans";}
+h6 {font-family: "Mona Sans";}
+
+.header-github-link::before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background-color: var(--ifm-navbar-link-color);
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  transition: background-color var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
+}
+
+.header-github-link:hover::before {
+  background-color: var(--ifm-navbar-link-hover-color);
+}
+
+/*
+<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+*/
+.header-linkedin-link::before {
+  content: '';
+  width: 25px;
+  height: 28px;
+  display: flex;
+  background-color: var(--ifm-navbar-link-color);
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 448 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z'/%3E%3C/svg%3E");
+  transition: background-color var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
+}
+
+.header-linkedin-link:hover::before {
+  background-color: var(--ifm-navbar-link-hover-color);
+}
