@@ -103,6 +103,8 @@ function replaceStringsInMarkdownFiles(folder) {
                 fileContents = fileContents.replace(/>\[!TIP]/g, ':::tip');
                 fileContents = fileContents.replace(/<!-- MD028\/no-blanks-blockquote -->/g, ':::');
                 fileContents = fileContents.replace(/>\[/g, '[');
+                // Escape placeholder braces used in prose so MDX doesn't treat them as JS expressions.
+                fileContents = fileContents.replace(/\{resource-provider\}\/\{resource-type\}/g, '`{resource-provider}/{resource-type}`');
                 fs.writeFileSync(res, fileContents, 'utf8');
             } catch (err) {
                 console.error('Error reading or writing file:', err);
